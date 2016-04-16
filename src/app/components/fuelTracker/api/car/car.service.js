@@ -10,7 +10,8 @@
         $log.debug('sono dentro il car service');
         var service = {
             getCars: getCars,
-            getCar: getCar
+            getCar: getCar,
+            remove: remove
         };
         return service;
 
@@ -22,6 +23,10 @@
         }
         function getCar(carId) {
             return CarResource.get({carId:carId}).$promise;
+        }
+
+        function remove(carId) {
+            return CarResource.remove({carId:carId}).$promise;
         }
     }
 })();

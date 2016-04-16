@@ -21,6 +21,12 @@
                 method: 'GET',
                 url: url,
                 responseType: 'json'
+            },
+            remove: {
+                method: 'DELETE',
+                url: url + '/:carId',
+                params: {carId: '@id'},
+                responseType: 'json'
             }
         };
 
