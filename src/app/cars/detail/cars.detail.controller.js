@@ -12,31 +12,27 @@
         var carId = $routeParams.carId;
 
         vm.detail = {};
+        vm.refuels = [];
 
         logStatus();
-
-
         activate();
 
-        function activate() {
-            loadCar(carId);
-        }
-
-        function loadCar(carId){
-            loader.getCar(carId).then(setCars, carsErrorHandler);
-        }
-
+        function activate() { loadCar(carId); }
+        function logStatus(erros) { $log.debug(vm.detail, erros); }
+        function loadCar(carId){ loader.getCar(carId).then(setCars, carsErrorHandler); }
         function setCars(loadedCar) {
             vm.detail = loadedCar;
+            loadRefuels(vm.detail.id);
             logStatus();
         }
-
-        function carsErrorHandler(error) {
-            logStatus(error);
+        function carsErrorHandler(error) { logStatus(error); }
+        function loadRefuels(carId) {
+            loader.getRefuelForCar(carId).then(setRefuels, refuelsErrorHandler);
         }
-
-        function logStatus(erros) {
-            $log.debug(vm.detail, erros);
+        function setRefuels(loadedRefuels) {
+            vm.refuels = loadedRefuels;
+            logStatus();
         }
+        function refuelsErrorHandler(error) { logStatus(error); }
     }
 })();

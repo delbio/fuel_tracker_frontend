@@ -28,7 +28,7 @@
 
         function removeCar(carId){
             $log.debug('remove car: ' + carId);
-            loader.remove(carId).then(
+            loader.removeCar(carId).then(
                 loadCars,
                 carsErrorHandler
             );
