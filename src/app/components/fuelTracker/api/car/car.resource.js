@@ -27,6 +27,11 @@
                 url: url + '/:carId',
                 params: {carId: '@id'},
                 responseType: 'json'
+            },
+            create: {
+                method: 'POST',
+                url: url,
+                responseType: 'json'
             }
         };
 

@@ -9,32 +9,33 @@
     function CarsController($log, CarService) {
         var vm = this;
         var loader = CarService;
-        vm.cars = [];
+        var cars = [];
+
+        vm.getCars = getCars;
+        vm.rmCar = removeCar;
+
 
         logStatus();
-
-
         activate();
 
-        function activate() {
-            loadCars();
-        }
+        function activate() { loadCars(); }
+        function getCars() { return cars; }
 
-        function loadCars(){
-            loader.getCars().then(setCars, carsErrorHandler);
+        function removeCar(carId){
+            $log.debug('remove car: '.carId);
+            loader.remove(carId).then(
+                loadCars,
+                carsErrorHandler
+            );
         }
-
+        function loadCars(){ loader.getCars().then(setCars, carsErrorHandler); }
         function setCars(loadedCars) {
-            vm.cars = loadedCars;
+            cars = loadedCars;
             logStatus();
         }
-
-        function carsErrorHandler(error) {
-            logStatus(error);
-        }
-
+        function carsErrorHandler(error) { logStatus(error); }
         function logStatus(erros) {
-            $log.debug(vm.cars, erros);
+            $log.debug(cars, erros);
         }
     }
 })();

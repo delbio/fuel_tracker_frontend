@@ -11,7 +11,8 @@
         var service = {
             getCars: getCars,
             getCar: getCar,
-            remove: remove
+            remove: remove,
+            create: create
         };
         return service;
 
@@ -27,6 +28,9 @@
 
         function remove(carId) {
             return CarResource.remove({carId:carId}).$promise;
+        }
+        function create(newObject){
+            return CarResource.create().$promise;
         }
     }
 })();

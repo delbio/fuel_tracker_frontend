@@ -2,14 +2,15 @@
 
     <md-content>
         <div class="techs" layout-align="center">
-            <md-card ng-repeat="car in cars.cars">
+            <md-card ng-repeat="car in cars.getCars()">
                 <md-card-content>
                     <h3 class="md-title">{{ car.name }}</h3>
                     <p>{{ car.id }}</p>
                 </md-card-content>
-                <!--<div class="md-action-buttons">-->
-                    <!--<md-button ng-href="{{ awesomeThing.url }}">Website</md-button>-->
-                <!--</div>-->
+                <div class="md-action-buttons">
+                    <md-button>Show</md-button>
+                    <md-button ng-click="cars.rmCar(car.id)">Remove</md-button>
+                </div>
             </md-card>
         </div>
     </md-content>
