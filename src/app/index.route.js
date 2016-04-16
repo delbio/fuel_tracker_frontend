@@ -17,10 +17,15 @@
             controller: 'CarsController',
             controllerAs: 'cars'
         })
+        .when('/cars/:carId', {
+            templateUrl: 'app/cars/detail/cars.detail.html',
+            controller: 'CarsDetailController',
+            controllerAs: 'car'
+        })
         //.when('/test', {
-        //    templateUrl: 'app/cars/detail/cars.detail.html',
-        //    controller: 'CarsDetailController',
-        //    controllerAs: 'car'
+        //    templateUrl: 'app/test/test.html',
+        //    controller: 'TestController',
+        //    controllerAs: 'test'
         //})
       .otherwise({
         redirectTo: '/'

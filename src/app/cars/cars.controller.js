@@ -6,23 +6,28 @@
         .controller('CarsController', CarsController);
 
     /** @ngInject */
-    function CarsController($log, CarService) {
+    function CarsController($log, $location, CarService) {
         var vm = this;
         var loader = CarService;
         var cars = [];
 
         vm.getCars = getCars;
-        vm.rmCar = removeCar;
+        vm.rm = removeCar;
+        vm.show = showCar;
 
 
-        logStatus();
         activate();
 
         function activate() { loadCars(); }
         function getCars() { return cars; }
 
+        function showCar(carId) {
+            $log.debug('remove car: ' + carId );
+            $location.path( "/cars/" + carId );
+        }
+
         function removeCar(carId){
-            $log.debug('remove car: '.carId);
+            $log.debug('remove car: ' + carId);
             loader.remove(carId).then(
                 loadCars,
                 carsErrorHandler
@@ -31,11 +36,8 @@
         function loadCars(){ loader.getCars().then(setCars, carsErrorHandler); }
         function setCars(loadedCars) {
             cars = loadedCars;
-            logStatus();
+            $log.debug('loaded cars: ' + cars);
         }
-        function carsErrorHandler(error) { logStatus(error); }
-        function logStatus(erros) {
-            $log.debug(cars, erros);
-        }
+        function carsErrorHandler(error) { $log.debug(error); }
     }
 })();
