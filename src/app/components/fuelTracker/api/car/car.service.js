@@ -14,7 +14,8 @@
             removeCar: removeCar,
             createCar: createCar,
             getRefuelForCar: getRefuelForCar,
-            createRefuelForCar: createRefuelForCar
+            createRefuelForCar: createRefuelForCar,
+            getRefuelDetail: getRefuelDetail
         };
         return service;
 
@@ -38,7 +39,6 @@
 
         function getRefuelForCar(carId) {
             return CarRefuelResource.list({carId:carId}).$promise.then(function(data) {
-                $log.info('load refuels',data);
                 return data.refuels;
             });
         }
@@ -51,6 +51,10 @@
             formData['refuel[type]'] = refuelObject.type;
             formData['refuel[petrolStation]'] = refuelObject.petrolStation;
             return CarRefuelResource.create({carId:carId}, formData).$promise;
+        }
+
+        function getRefuelDetail(carId, refuelId) {
+            return CarRefuelResource.get({carId:carId, refuelId:refuelId}).$promise;
         }
     }
 })();
