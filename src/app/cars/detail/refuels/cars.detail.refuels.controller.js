@@ -35,7 +35,11 @@
         }
 
         function removeRefuel() {
-
+            CarService.removeRefuel(carId, refuelId)
+                .then(onRemove, onError);
+        }
+        function onRemove(data) {
+            $log.debug('refuel detail removed: ', data);
         }
     }
 })();

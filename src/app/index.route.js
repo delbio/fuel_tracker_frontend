@@ -17,20 +17,15 @@
             controller: 'CarsDetailController',
             controllerAs: 'car'
         })
-        .when('/cars/:carId/refuels/:refuelId', {
-            templateUrl: 'app/cars/detail/refuels/cars.detail.refuels.html',
-            controller: 'CarsDetailRefuelsController',
-            controllerAs: 'vm'
-        })
         .when('/cars/:carId/refuels/new', {
             templateUrl: 'app/cars/detail/refuels/new/cars.detail.refuels.new.html',
             controller: 'CarsDetailRefuelsNewController',
             controllerAs: 'vm'
         })
-        .when('/test', {
-            templateUrl: 'app/test/test.html',
-            controller: 'TestController',
-            controllerAs: 'test'
+        .when('/cars/:carId/refuels/:refuelId', {
+            templateUrl: 'app/cars/detail/refuels/cars.detail.refuels.html',
+            controller: 'CarsDetailRefuelsController',
+            controllerAs: 'vm'
         })
         .otherwise({
         redirectTo: '/cars'

@@ -15,7 +15,8 @@
             createCar: createCar,
             getRefuelForCar: getRefuelForCar,
             createRefuelForCar: createRefuelForCar,
-            getRefuelDetail: getRefuelDetail
+            getRefuelDetail: getRefuelDetail,
+            removeRefuel: removeRefuel
         };
         return service;
 
@@ -55,6 +56,9 @@
 
         function getRefuelDetail(carId, refuelId) {
             return CarRefuelResource.get({carId:carId, refuelId:refuelId}).$promise;
+        }
+        function removeRefuel(carId, refuelId) {
+            return CarRefuelResource.remove({carId:carId, refuelId:refuelId}).$promise;
         }
     }
 })();
