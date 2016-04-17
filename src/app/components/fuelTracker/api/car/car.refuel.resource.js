@@ -6,7 +6,7 @@
         .factory('CarRefuelResource', CarRefuelResource);
 
     /** @ngInject */
-    function CarRefuelResource($resource, apiConfig) {
+    function CarRefuelResource($resource, apiConfig, transformRequestAsFormPost) {
         var baseApiUrl = apiConfig.baseApiUrl;
 
         var url = baseApiUrl + '/cars/:carId/refuels';
@@ -32,7 +32,9 @@
             create: {
                 method: 'POST',
                 url: url,
-                responseType: 'json'
+                responseType: 'json',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}, //Fix for Symfony
+                transformRequest: transformRequestAsFormPost
             }
         };
 

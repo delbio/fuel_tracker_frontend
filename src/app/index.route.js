@@ -7,11 +7,6 @@
 
   function routeConfig($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
         .when('/cars', {
             templateUrl: 'app/cars/cars.html',
             controller: 'CarsController',
@@ -22,14 +17,14 @@
             controller: 'CarsDetailController',
             controllerAs: 'car'
         })
-        //.when('/test', {
-        //    templateUrl: 'app/test/test.html',
-        //    controller: 'TestController',
-        //    controllerAs: 'test'
-        //})
-      .otherwise({
-        redirectTo: '/'
-      });
+        .when('/test', {
+            templateUrl: 'app/test/test.html',
+            controller: 'TestController',
+            controllerAs: 'test'
+        })
+        .otherwise({
+        redirectTo: '/cars'
+        });
   }
 
 })();

@@ -1,5 +1,5 @@
 <div ng-cloak layout-gt-sm="row" layout="column">
-    <div flex-gt-sm="100" flex>
+    <div flex-gt-sm="40" flex>
         <md-toolbar layout="row" class="md-hue-3">
             <div class="md-toolbar-tools">
                 <span>{{ car.detail.name }}</span>
@@ -7,7 +7,7 @@
         </md-toolbar>
         <md-content>
             <md-list flex>
-                <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>
+                <md-subheader class="md-no-sticky">Rifornimenti:</md-subheader>
                 <md-list-item class="md-3-line" ng-repeat="item in car.refuels" ng-click="null">
                     <div class="md-list-item-text" layout="column">
                         <h3>{{ item.date | date: 'yyyy-MM-dd' }}</h3>
@@ -20,4 +20,3 @@
         </md-content>
     </div>
 </div>
-
