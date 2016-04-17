@@ -17,6 +17,11 @@
             controller: 'CarsDetailController',
             controllerAs: 'car'
         })
+        .when('/cars/:carId/refuels/new', {
+            templateUrl: 'app/cars/detail/refuels/new/cars.detail.refuels.new.html',
+            controller: 'CarsDetailRefuelsNewController',
+            controllerAs: 'vm'
+        })
         .when('/test', {
             templateUrl: 'app/test/test.html',
             controller: 'TestController',

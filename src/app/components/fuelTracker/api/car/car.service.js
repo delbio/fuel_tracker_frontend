@@ -13,7 +13,8 @@
             getCar: getCar,
             removeCar: removeCar,
             createCar: createCar,
-            getRefuelForCar: getRefuelForCar
+            getRefuelForCar: getRefuelForCar,
+            createRefuelForCar: createRefuelForCar
         };
         return service;
 
@@ -40,6 +41,16 @@
                 $log.info('load refuels',data);
                 return data.refuels;
             });
+        }
+        function createRefuelForCar(carId, refuelObject) {
+            var formData = {};
+            formData['refuel[date]'] = refuelObject.date;
+            formData['refuel[carDistance]'] = refuelObject.carDistance;
+            formData['refuel[unitPrice]'] = refuelObject.unitPrice;
+            formData['refuel[amountPurchased]'] = refuelObject.amountPurchased;
+            formData['refuel[type]'] = refuelObject.type;
+            formData['refuel[petrolStation]'] = refuelObject.petrolStation;
+            return CarRefuelResource.create({carId:carId}, formData).$promise;
         }
     }
 })();
