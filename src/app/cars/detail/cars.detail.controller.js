@@ -6,13 +6,14 @@
         .controller('CarsDetailController', CarsDetailController);
 
     /** @ngInject */
-    function CarsDetailController($log, $routeParams, CarService) {
+    function CarsDetailController($log, $location, $routeParams, CarService) {
         var vm = this;
         var loader = CarService;
         var carId = $routeParams.carId;
 
         vm.detail = {};
         vm.refuels = [];
+        vm.showRefuel = showRefuel;
 
         logStatus();
         activate();
@@ -34,5 +35,8 @@
             logStatus();
         }
         function refuelsErrorHandler(error) { logStatus(error); }
+        function showRefuel(refuelId) {
+            $location.path( "/cars/" + carId + "/refuels/" + refuelId);
+        }
     }
 })();
