@@ -6,7 +6,7 @@
         .controller('CarsDetailRefuelsController', CarsDetailRefuelsController);
 
     /** @ngInject */
-    function CarsDetailRefuelsController($log, $routeParams, CarService) {
+    function CarsDetailRefuelsController($log, $location, $routeParams, CarService) {
         var vm = this;
         var carId = $routeParams.carId;
         var refuelId = $routeParams.refuelId;
@@ -40,6 +40,7 @@
         }
         function onRemove(data) {
             $log.debug('refuel detail removed: ', data);
+            $location.path( "/cars/" + carId);
         }
     }
 })();
