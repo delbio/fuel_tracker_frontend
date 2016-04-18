@@ -11,6 +11,11 @@
 
         var url = baseApiUrl + '/petrolstations';
         var actions = {
+            list: {
+                method: 'GET',
+                url: url,
+                responseType: 'json',
+            },
             create: {
                 method: 'POST',
                 url: url,
