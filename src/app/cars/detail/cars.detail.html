@@ -3,6 +3,10 @@
         <md-toolbar layout="row" class="md-hue-3">
             <div class="md-toolbar-tools">
                 <span>{{ car.detail.name }}</span>
+                <span flex></span>
+                <md-button class="md-raised" aria-label="Nuovo rifornimento" ng-click="car.showNewRefuelForm()">
+                    New
+                </md-button>
             </div>
         </md-toolbar>
         <md-content>
