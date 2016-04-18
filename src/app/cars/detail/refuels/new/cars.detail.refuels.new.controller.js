@@ -6,7 +6,7 @@
         .controller('CarsDetailRefuelsNewController', CarsDetailRefuelsNewController);
 
     /** @ngInject */
-    function CarsDetailRefuelsNewController($log, $routeParams, CarService, FuelTypeService, PetrolStationService) {
+    function CarsDetailRefuelsNewController($log, $location, $routeParams, CarService, FuelTypeService, PetrolStationService) {
         var vm = this;
         var carId = $routeParams.carId;
 
@@ -31,14 +31,13 @@
             loadFuelTypes();
             loadPetrolStations();
         }
-
-        function addRefuel(){
-            CarService.createRefuelForCar(carId, vm.newRefuel).then(function(data) {
-                $log.info('create refuels',data);
-            }, function(error){
-                $log.debug('create refuel error',error);
-            });
+        // New Refuel
+        function addRefuel(){ CarService.createRefuelForCar(carId, vm.newRefuel).then(onRefuelCreated,onRefuelCreatedError); }
+        function onRefuelCreated(data) {
+            $log.info('create refuels',data);
+            $location.path( "/cars/" + carId);
         }
+        function onRefuelCreatedError(error) { $log.debug('create refuel error',error); }
         // Refuel Type
         function loadFuelTypes() { FuelTypeService.list().then(onFuelTypeLoaded, onFuelTypeError); }
         function onFuelTypeLoaded(data) { vm.fuelTypes = data; }
