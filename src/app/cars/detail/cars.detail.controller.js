@@ -15,6 +15,7 @@
         vm.refuels = [];
         vm.showRefuel = showRefuel;
         vm.showNewRefuelForm = showNewRefuelForm;
+        vm.showHome = showHome;
 
         logStatus();
         activate();
@@ -38,5 +39,6 @@
         function refuelsErrorHandler(error) { logStatus(error); }
         function showRefuel(refuelId) { $location.path( "/cars/" + carId + "/refuels/" + refuelId); }
         function showNewRefuelForm() { $location.path( "/cars/" + carId + "/refuels/new"); }
+        function showHome() { $location.path( "/cars/"); }
     }
 })();

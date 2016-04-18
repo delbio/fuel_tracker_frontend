@@ -2,6 +2,10 @@
     <div flex-gt-sm="100" flex>
         <md-toolbar layout="row" class="md-hue-3">
             <div class="md-toolbar-tools">
+                <md-button class="md-raised" aria-label="Home" ng-click="car.showHome()">
+                    Home
+                </md-button>
+                <span flex></span>
                 <span>{{ car.detail.name }}</span>
                 <span flex></span>
                 <md-button class="md-raised" aria-label="Nuovo rifornimento" ng-click="car.showNewRefuelForm()">
