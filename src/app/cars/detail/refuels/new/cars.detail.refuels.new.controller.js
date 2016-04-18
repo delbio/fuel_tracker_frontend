@@ -12,10 +12,12 @@
 
         vm.fuelTypes = [];
         vm.petrolStations = [];
+        vm.maxDate = new Date();
+        vm.minDate = new Date('1900/01/01');
 
         vm.newRefuel = {};
 
-        vm.newRefuel.date = null;
+        vm.newRefuel.date = new Date();
         vm.newRefuel.carDistance = null;
         vm.newRefuel.unitPrice = null;
         vm.newRefuel.amountPurchased = null;
@@ -23,19 +25,17 @@
         vm.newRefuel.petrolStation = null;
 
         vm.addRefuel = addRefuel;
-        vm.showRefuelStatus = addRefuel;
+        vm.persist = addRefuel;
+        vm.loadType = loadFuelTypes;
+        vm.loadStation = loadPetrolStations;
+        vm.exit = exit;
 
-        activate();
-
-        function activate() {
-            loadFuelTypes();
-            loadPetrolStations();
-        }
+        function exit() { moveToCarDetail(); }
         // New Refuel
         function addRefuel(){ CarService.createRefuelForCar(carId, vm.newRefuel).then(onRefuelCreated,onRefuelCreatedError); }
         function onRefuelCreated(data) {
             $log.info('create refuels',data);
-            $location.path( "/cars/" + carId);
+            moveToCarDetail();
         }
         function onRefuelCreatedError(error) { $log.debug('create refuel error',error); }
         // Refuel Type
@@ -46,5 +46,7 @@
         function loadPetrolStations() { PetrolStationService.list().then(onPetrolStatiosnLoaded, onPetrolStatiosnError) }
         function onPetrolStatiosnLoaded(data) { vm.petrolStations = data; }
         function onPetrolStatiosnError(error) { $log.debug('load petrol stations error:', error); }
+        // move to car detail
+        function moveToCarDetail() { $location.path( "/cars/" + carId); }
     }
 })();

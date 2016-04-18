@@ -1,15 +1,67 @@
-<div layout="column" ng-cloak class="md-inline-form">
-    <form name="refuelForm">
-        <input type="text" ng-model="vm.newRefuel.date"/>
-        <input type="text" ng-model="vm.newRefuel.carDistance"/>
-        <input type="text" ng-model="vm.newRefuel.unitPrice"/>
-        <input type="text" ng-model="vm.newRefuel.amountPurchased"/>
-        <select ng-model="vm.newRefuel.type" ng-repeat="type in vm.fuelTypes">
-            <option value="{{type.id}}">{{type.name}}</option>
-        </select>
-        <select ng-model="vm.newRefuel.petrolStation" ng-repeat="station in vm.petrolStations">
-            <option value="{{station.id}}">{{station.name}}</option>
-        </select>
-        <input type="submit" value="Submit" ng-click="vm.showRefuelStatus()"/>
-    </form>
+<div ng-cloak layout-gt-sm="row" layout="column" layout-padding>
+    <div flex-gt-sm="100" flex>
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Nuovo Rifornimento</span>
+                <span flex></span>
+                <md-button class="md-raised" aria-label="Persisti i dati" ng-click="vm.persist()">
+                    Crea
+                </md-button>
+                <md-button class="md-raised" aria-label="Annulla la creazione" ng-click="vm.exit()">
+                    Annulla
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content>
+            <form name="refuelForm">
+                <md-list flex>
+                    <md-list-item class="md-3-line" >
+                        <div class="md-list-item-text" layout="column">
+                            <h3>Data:</h3>
+                            <md-datepicker ng-model="vm.newRefuel.date" md-placeholder="Enter date"
+                                           md-max-date="vm.maxDate" md-min-date="vm.minDate" required ></md-datepicker>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-list-item class="md-3-line" >
+                        <md-input-container class="md-list-item-text">
+                            <label>Km:</label>
+                            <input ng-model="vm.newRefuel.carDistance" type="number" step="1" min="0" >
+                        </md-input-container>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-list-item class="md-3-line" >
+                        <md-input-container class="md-list-item-text">
+                            <label>Prezzo al litro (EUR)</label>
+                            <input ng-model="vm.newRefuel.unitPrice" type="number" step="0.001" min="0" >
+                        </md-input-container>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-list-item class="md-3-line" >
+                        <md-input-container class="md-list-item-text">
+                            <label>Importo (EUR)</label>
+                            <input ng-model="vm.newRefuel.amountPurchased" type="number" step="0.01" min="0" >
+                        </md-input-container>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-list-item class="md-3-line" >
+                        <div class="md-list-item-text" layout="column">
+                            <md-select placeholder="Scegli il tipo di carburante" ng-model="vm.newRefuel.type" md-on-open="vm.loadType()" style="min-width: 200px;">
+                                <md-option ng-value="{{type.id}}" ng-repeat="type in vm.fuelTypes">{{type.name}}</md-option>
+                            </md-select>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-list-item class="md-3-line" >
+                        <div class="md-list-item-text" layout="column">
+                            <md-select placeholder="Scegli il distributore" ng-model="vm.newRefuel.petrolStation" md-on-open="vm.loadStation()" style="min-width: 200px;">
+                                <md-option ng-value="{{station.id}}" ng-repeat="station in vm.petrolStations">{{station.name}}</md-option>
+                            </md-select>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                </md-list>
+            </form>
+        </md-content>
+    </div>
 </div>

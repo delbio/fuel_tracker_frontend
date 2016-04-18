@@ -44,13 +44,18 @@
             });
         }
         function createRefuelForCar(carId, refuelObject) {
+            $log.debug('create refuel request: ', refuelObject);
+
             var formData = {};
-            formData['refuel[date]'] = refuelObject.date;
+            formData['refuel[date]'] = moment(refuelObject.date).format('YYYY/MM/DD');;
             formData['refuel[carDistance]'] = refuelObject.carDistance;
             formData['refuel[unitPrice]'] = refuelObject.unitPrice;
             formData['refuel[amountPurchased]'] = refuelObject.amountPurchased;
             formData['refuel[type]'] = refuelObject.type;
             formData['refuel[petrolStation]'] = refuelObject.petrolStation;
+
+            $log.debug('create refuel form data: ', formData);
+
             return CarRefuelResource.create({carId:carId}, formData).$promise;
         }
 
