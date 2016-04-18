@@ -9,7 +9,8 @@
     function PetrolStationService($log, PetrolStationResource) {
         $log.debug('sono dentro lo station service');
         var service = {
-            create: create
+            create: create,
+            list: list
         };
         return service;
 
@@ -17,6 +18,13 @@
             var formData = {};
             formData['petrol_station[name]'] = stationObject.name;
             return PetrolStationResource.create({}, formData).$promise;
+        }
+
+        function list() {
+            return PetrolStationResource.list().$promise.then(function(data) {
+                $log.info('load petrol stations: ',data);
+                return data.petrolStations;
+            });
         }
     }
 })();
