@@ -4,7 +4,9 @@
         <input type="text" ng-model="vm.newRefuel.carDistance"/>
         <input type="text" ng-model="vm.newRefuel.unitPrice"/>
         <input type="text" ng-model="vm.newRefuel.amountPurchased"/>
-        <input type="text" ng-model="vm.newRefuel.type"/>
+        <select ng-model="vm.newRefuel.type" ng-repeat="type in vm.fuelTypes">
+            <option value="{{type.id}}">{{type.name}}</option>
+        </select>
         <input type="text" ng-model="vm.newRefuel.petrolStation"/>
         <input type="submit" value="Submit" ng-click="vm.showRefuelStatus()"/>
     </form>
